@@ -13,10 +13,11 @@ function component(width, height, color, x, y) {
 	this.y = y;
 	this.update = function() {
 		ctx = myGameArea.context;		//hinh tron bitch
+		ctx.beginPath();
 	    ctx.fillStyle = color;
-	    // ctx.arc(this.x, this.y, 10, 0, 2 * Math.PI);
-	    ctx.fillRect(this.x, this.y, this.height, this.width);
-	    // ctx.fill();
+	    ctx.arc(this.x, this.y, 10, 0, 2 * Math.PI);
+	    // ctx.rect(this.x, this.y, this.height, this.width);
+	    ctx.fill();
 	}
 }
 
