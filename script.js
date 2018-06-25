@@ -2,20 +2,21 @@ var gamePiece;
 
 function startGame() {
 	myGameArea.start();
-	gamePiece = new component(20, 20, "red", 10, 120);
+	gamePiece = new component(10, "red", 10, 120);
 	updateGameArea();
 }
 
-function component(width, height, color, x, y) {
-	this.width = width;
-	this.height = height;
+function component(radius, color, x, y) {
+	// this.width = width;
+	// this.height = height;
+	this.radius = radius;
 	this.x = x;
 	this.y = y;
 	this.update = function() {
 		ctx = myGameArea.context;		//hinh tron bitch
 		ctx.beginPath();
 	    ctx.fillStyle = color;
-	    ctx.arc(this.x, this.y, 10, 0, 2 * Math.PI);
+	    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
 	    // ctx.rect(this.x, this.y, this.height, this.width);
 	    ctx.fill();
 	}
@@ -37,12 +38,12 @@ var myGameArea = {
 function updateGameArea(){
 	var interval = setInterval(function() {
 		myGameArea.clear();
-		gamePiece.x += 3;
+		gamePiece.x += 1;
 		gamePiece.update();
-		if (gamePiece.x == 480 - (gamePiece.width + 1) || gamePiece.y == 210 - (gamePiece.height + 1)) {
+		if (gamePiece.x == 480 - (gamePiece.radius*2 + 1) || gamePiece.y == 210 - (gamePiece.radius*2 + 1)) {
 			clearInterval(interval);
 		}
-	},100);
+	},10);
 	
 }
 startGame();
