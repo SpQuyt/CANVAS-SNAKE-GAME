@@ -28,13 +28,14 @@ var myGameArea = {
 		document.body.insertBefore(this.canvas,document.body.childNode);
 	},
 	clear: function() {
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);			//phai xoa duoc hinh tron
 	}
 }
 
 function updateGameArea(){
 	var interval = setInterval(function() {
 		myGameArea.clear();
+		gamePiece.x += 3;
 		gamePiece.update();
 		if (gamePiece.x == 480 - (gamePiece.width + 1) || gamePiece.y == 210 - (gamePiece.height + 1)) {
 			clearInterval(interval);
