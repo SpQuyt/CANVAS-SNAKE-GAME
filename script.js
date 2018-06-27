@@ -3,12 +3,36 @@ var gamePiece;
 function startGame() {
 	myGameArea.start();
 	gamePiece = new component(10, "red", 10, 120);
+	gamePiece.dx = 1;
+	gamePiece.dy = 0;
+	document.addEventListener("keydown", (event) => {
+			    switch (event.keyCode) {
+			    	case 37:
+			    		gamePiece.dx = -1;
+			    		gamePiece.dy = 0;
+			    		break;
+			    	case 38:
+			    		gamePiece.dx = 0;
+			    		gamePiece.dy = -1;
+			    		break;
+			    	case 39:
+			    		gamePiece.dx = 1;
+			    		gamePiece.dy = 0;
+			    		break;
+			    	case 40:
+			    		gamePiece.dx = 0;
+			    		gamePiece.dy = 1;
+			    		break;
+			    }
+			});
 	updateGameArea();
 }
 
 function component(radius, color, x, y) {
 	// this.width = width;
 	// this.height = height;
+	this.dx;
+	this.dy;
 	this.radius = radius;
 	this.x = x;
 	this.y = y;
@@ -28,7 +52,6 @@ var myGameArea = {
 		this.canvas.width = 480;
 		this.canvas.height = 210;
 		this.context = this.canvas.getContext("2d");
-		// document.body.insertBefore(this.canvas,document.body.childNode);
 	},
 	clear: function() {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);			//phai xoa duoc hinh tron
@@ -38,13 +61,14 @@ var myGameArea = {
 function updateGameArea(){
 	var interval = setInterval(function() {
 		myGameArea.clear();
-		gamePiece.x += 1;
+		gamePiece.x += gamePiece.dx;
+		gamePiece.y += gamePiece.dy;
 		gamePiece.update();
 		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius || gamePiece.y == myGameArea.canvas.height - gamePiece.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
 			clearInterval(interval);
 		}
-	},50);
+	},10);
 	
 }
-		
+
 startGame();
