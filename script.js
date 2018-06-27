@@ -43,7 +43,7 @@ function updateGameArea(){
 		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius || gamePiece.y == myGameArea.canvas.height - gamePiece.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
 			clearInterval(interval);
 		}
-	},10);
+	},50);
 	
 }
 		
