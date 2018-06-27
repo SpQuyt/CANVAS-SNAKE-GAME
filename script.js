@@ -37,12 +37,14 @@ function component(radius, color, x, y) {
 	this.x = x;
 	this.y = y;
 	this.update = function() {										//this function is to DRAW.
-		ctx = myGameArea.context;		
-		ctx.beginPath();
+		ctx = myGameArea.context;			
+		ctx.beginPath();											// luon luon phai co begin :D
 	    ctx.fillStyle = color;
+	    ctx.lineWidth = 10;
 	    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);		//hinh tron bitch
 	    // ctx.rect(this.x, this.y, this.height, this.width);		//hinh tu giac bitch
-	    ctx.fill();
+	    ctx.stroke();												// to vien
+	    ctx.fill();													//to mau
 	}
 }
 
@@ -50,7 +52,7 @@ var myGameArea = {
 	canvas: document.getElementById("mycanvas"),
 	start: function() {
 		this.canvas.width = 480;
-		this.canvas.height = 210;
+		this.canvas.height = 480;
 		this.context = this.canvas.getContext("2d");
 	},
 	clear: function() {
@@ -64,7 +66,7 @@ function updateGameArea(){
 		gamePiece.x += gamePiece.dx;
 		gamePiece.y += gamePiece.dy;
 		gamePiece.update();
-		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius + 3 || gamePiece.y == myGameArea.canvas.height - gamePiece.radius + 3) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
+		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius || gamePiece.y == myGameArea.canvas.height - gamePiece.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
 			clearInterval(interval);
 		}
 	},10);
