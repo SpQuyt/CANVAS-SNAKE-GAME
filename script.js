@@ -64,7 +64,7 @@ function updateGameArea(){
 		gamePiece.x += gamePiece.dx;
 		gamePiece.y += gamePiece.dy;
 		gamePiece.update();
-		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius || gamePiece.y == myGameArea.canvas.height - gamePiece.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
+		if (gamePiece.x == myGameArea.canvas.width - gamePiece.radius + 3 || gamePiece.y == myGameArea.canvas.height - gamePiece.radius + 3) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
 			clearInterval(interval);
 		}
 	},10);
