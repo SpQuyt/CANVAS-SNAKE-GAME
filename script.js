@@ -1,6 +1,7 @@
 var snake;
 var radius = 5;
 var border = 5;
+var stop = 0;
 
 function startGame() {
 	myGameArea.start();
@@ -32,6 +33,8 @@ function startGame() {
 	    }
 	});
 	updateGameArea();
+	snake.cur_x = snake.dx;
+	snake.cur_y = snake.dy;
 }
 
 function component(x, y) {
@@ -60,6 +63,8 @@ function component(x, y) {
 function List(){
 	this.dx = 0;
 	this.dy = 0;
+	this.cur_x = 0;
+	this.cur_y = 0;
 	this.head = new component();
 	this.length = 0;
 	this.addToLast = function(anode){
@@ -94,6 +99,13 @@ function List(){
 		this.head.next = temp;
 		this.deleteLast();
 		redraw();
+		console.log(this.head.next.pos_x);
+		if (this.head.next.pos_x == 490 ||
+			this.head.next.pos_y == 490 ||
+			this.head.next.pos_x == -5 ||
+			this.head.next.pos_y == -5){
+			stop = 1;
+		}
 		// if (map[temp.pos_x][temp.pos_y] != '◦'){
 		// 	this.deleteLast();
 		// }
@@ -153,9 +165,9 @@ function updateGameArea(){
 		snake.pos_x += snake.dx;
 		snake.pos_y += snake.dy;
 		snake.move();
-		// if (snake.pos_x == myGameArea.canvas.width - snake.radius || snake.pos_y == myGameArea.canvas.height - snake.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
-		// 	clearInterval(interval);
-		// }
+		if (stop == 1) {	
+			clearInterval(interval);
+		}
 	},100);
 }
 
