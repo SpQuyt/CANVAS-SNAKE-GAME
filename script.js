@@ -37,11 +37,12 @@ function startGame() {
 function component(x, y) {
 	// this.width = width;
 	// this.height = height;
-	this.ax;
-	this.ay;
-	this.px;
-	this.py;
-	this.color = "red";
+	// this.ax;
+	// this.ay;
+	// this.px;
+	// this.py;
+	this.colorbody = "red";
+	this.colorhead = "white";
 	this.radius = radius;
 	this.pos_x = x;
 	this.pos_y = y;
@@ -109,15 +110,28 @@ function redraw() {												//this function is to DRAW.
 		temp.pos_y = snake.head.next.pos_y;
 		temp.next = snake.head.next;
 		while (temp != null){
-			ctx = myGameArea.context;			
-			ctx.beginPath();													// luon luon phai co begin :D
-		    ctx.fillStyle = temp.color;
-		    ctx.lineWidth = 10;
-		    ctx.arc(temp.pos_x, temp.pos_y, temp.radius, 0, 2 * Math.PI);			//hinh tron bitch
-		    // ctx.rect(this.pos_x, this.pos_y, this.height, this.width);		//hinh tu giac bitch
-		    ctx.stroke();														// to vien
-		    ctx.fill();															//to mau
-		    temp = temp.next;													
+			if (temp == snake.head.next){											//neu la dau con ran thi to white
+				ctx = myGameArea.context;			
+				ctx.beginPath();													// luon luon phai co begin :D
+			    ctx.fillStyle = temp.colorhead;
+			    ctx.lineWidth = 10;
+			    ctx.arc(temp.pos_x, temp.pos_y, temp.radius, 0, 2 * Math.PI);			//hinh tron bitch
+			    // ctx.rect(temp.pos_x, temp.pos_y, temp.radius*2, temp.radius*2);		//hinh tu giac bitch
+			    ctx.stroke();														// to vien
+			    ctx.fill();															//to mau
+			    temp = temp.next;		
+			}
+			else {																	//neu la than con ran thi to red
+				ctx = myGameArea.context;			
+				ctx.beginPath();													// luon luon phai co begin :D
+			    ctx.fillStyle = temp.colorbody;
+			    ctx.lineWidth = 10;
+			    ctx.arc(temp.pos_x, temp.pos_y, temp.radius, 0, 2 * Math.PI);			//hinh tron bitch
+			    // ctx.rect(this.pos_x, this.pos_y, this.height, this.width);		//hinh tu giac bitch
+			    ctx.stroke();														// to vien
+			    ctx.fill();															//to mau
+			    temp = temp.next;		
+			}											
 		}
 	}
 
