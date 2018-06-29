@@ -5,6 +5,8 @@ function startGame() {
 	gamePiece = new List();
 	gamePiece.addToLast(new component(130,100));
 	gamePiece.addToLast(new component(130-10*2-10,100));
+	gamePiece.addToLast(new component(130-(10*2-10)*2,100));
+	gamePiece.addToLast(new component(130-(10*2-10)*3,100));
 	gamePiece.dx = 30;
 	gamePiece.dy = 0;
 	document.addEventListener("keydown", (event) => {
@@ -113,7 +115,6 @@ function redraw() {												//this function is to DRAW.
 		    ctx.fill();															//to mau
 		    temp = temp.next;													
 		}
-		
 	}
 
 var myGameArea = {
