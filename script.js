@@ -10,27 +10,6 @@ function startGame() {
 	gamePiece.dx = 30;
 	gamePiece.dy = 0;
 	document.addEventListener("keydown", (event) => {
-<<<<<<< HEAD
-			    switch (event.keyCode) {
-			    	case 37:
-			    		gamePiece.dx = -30;
-			    		gamePiece.dy = 0;
-			    		break;
-			    	case 38:
-			    		gamePiece.dx = 0;
-			    		gamePiece.dy = -30;
-			    		break;
-			    	case 39:
-			    		gamePiece.dx = 30;
-			    		gamePiece.dy = 0;
-			    		break;
-			    	case 40:
-			    		gamePiece.dx = 0;
-			    		gamePiece.dy = 30;
-			    		break;
-			    }
-			});
-=======
 	    switch (event.keyCode) {
 	    	case 37:
 	    		gamePiece.dx = -1;
@@ -50,7 +29,6 @@ function startGame() {
 	    		break;
 	    }
 	});
->>>>>>> 80585d507ae4ba44769c47cf0d766861ab345cca
 	updateGameArea();
 }
 
