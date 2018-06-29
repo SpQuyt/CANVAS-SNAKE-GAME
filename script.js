@@ -1,31 +1,33 @@
-var gamePiece;
+var snake;
+var radius = 5;
+var border = 5;
 
 function startGame() {
 	myGameArea.start();
-	gamePiece = new List();
-	gamePiece.addToLast(new component(130,100));
-	gamePiece.addToLast(new component(130-10*2-10,100));
-	gamePiece.addToLast(new component(130-(10*2-10)*2,100));
-	gamePiece.addToLast(new component(130-(10*2-10)*3,100));
-	gamePiece.dx = 30;
-	gamePiece.dy = 0;
+	snake = new List();
+	snake.addToLast(new component(130,100));
+	snake.addToLast(new component(130-radius*2-border,100));				//pos_x-(radius*2-border)*n, pos_y
+	snake.addToLast(new component(130-(radius*2-border)*2,100));
+	snake.addToLast(new component(130-(radius*2-border)*3,100));
+	snake.dx = (radius*2+border);
+	snake.dy = 0;
 	document.addEventListener("keydown", (event) => {
 	    switch (event.keyCode) {
 	    	case 37:
-	    		gamePiece.dx = -1;
-	    		gamePiece.dy = 0;
+	    		snake.dx = -(radius*2+border);
+	    		snake.dy = 0;
 	    		break;
 	    	case 38:
-	    		gamePiece.dx = 0;
-	    		gamePiece.dy = -1;
+	    		snake.dx = 0;
+	    		snake.dy = -(radius*2+border);
 	    		break;
 	    	case 39:
-	    		gamePiece.dx = 1;
-	    		gamePiece.dy = 0;
+	    		snake.dx = (radius*2+border);
+	    		snake.dy = 0;
 	    		break;
 	    	case 40:
-	    		gamePiece.dx = 0;
-	    		gamePiece.dy = 1;
+	    		snake.dx = 0;
+	    		snake.dy = (radius*2+border);
 	    		break;
 	    }
 	});
@@ -35,17 +37,19 @@ function startGame() {
 function component(x, y) {
 	// this.width = width;
 	// this.height = height;
-	// this.dx;
-	// this.dy;
+	this.ax;
+	this.ay;
+	this.px;
+	this.py;
 	this.color = "red";
-	this.radius = 10;
+	this.radius = radius;
 	this.pos_x = x;
 	this.pos_y = y;
 	this.next = null;
 	ctx = myGameArea.context;			
 	ctx.beginPath();													// luon luon phai co begin :D
     ctx.fillStyle = this.color;
-    ctx.lineWidth = 10;
+    ctx.lineWidth = border;
     ctx.arc(this.pos_x, this.pos_y, this.radius, 0, 2 * Math.PI);			//hinh tron bitch
     // ctx.rect(this.pos_x, this.pos_y, this.height, this.width);		//hinh tu giac bitch
     ctx.stroke();														// to vien
@@ -68,8 +72,8 @@ function List(){
 				curnode = curnode.next;
 			}
 			curnode.next = anode;
-			this.length++;
 		}
+		this.length++;
 	};
 	this.deleteLast = function(){
 		after = this.head;
@@ -96,14 +100,14 @@ function List(){
 		// 	this.length++;
 		// 	generate_food()
 		// }
-	}
+	};
 }
 
 function redraw() {												//this function is to DRAW.
 		temp = new component();
-		temp.pos_x = gamePiece.head.next.pos_x;
-		temp.pos_y = gamePiece.head.next.pos_y;
-		temp.next = gamePiece.head.next;
+		temp.pos_x = snake.head.next.pos_x;
+		temp.pos_y = snake.head.next.pos_y;
+		temp.next = snake.head.next;
 		while (temp != null){
 			ctx = myGameArea.context;			
 			ctx.beginPath();													// luon luon phai co begin :D
@@ -132,10 +136,10 @@ var myGameArea = {
 function updateGameArea(){
 	var interval = setInterval(function() {
 		myGameArea.clear();
-		gamePiece.pos_x += gamePiece.dx;
-		gamePiece.pos_y += gamePiece.dy;
-		gamePiece.move();
-		// if (gamePiece.pos_x == myGameArea.canvas.width - gamePiece.radius || gamePiece.pos_y == myGameArea.canvas.height - gamePiece.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
+		snake.pos_x += snake.dx;
+		snake.pos_y += snake.dy;
+		snake.move();
+		// if (snake.pos_x == myGameArea.canvas.width - snake.radius || snake.pos_y == myGameArea.canvas.height - snake.radius) {	//TÂM CỦA NÓ Ở TOẠ ĐỘ (10,120)
 		// 	clearInterval(interval);
 		// }
 	},100);
