@@ -7,9 +7,9 @@ function startGame() {
 	myGameArea.start();
 	snake = new List();
 	snake.addToLast(new component(130, 100));
-	snake.addToLast(new component(130 - radius * 2 - border, 100));				//pos_x-(radius*2-border)*n, pos_y
-	snake.addToLast(new component(130 - (radius * 2 - border) * 2, 100));
-	snake.addToLast(new component(130 - (radius * 2 - border) * 3, 100));
+	// snake.addToLast(new component(130 - radius * 2 - border, 100));				//pos_x-(radius*2-border)*n, pos_y
+	// snake.addToLast(new component(130 - (radius * 2 - border) * 2, 100));
+	// snake.addToLast(new component(130 - (radius * 2 - border) * 3, 100));
 	snake.dx = (radius * 2 + border);
 	snake.dy = 0;
 	document.addEventListener("keydown", (event) => {
